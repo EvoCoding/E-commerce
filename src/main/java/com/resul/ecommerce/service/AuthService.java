@@ -65,12 +65,14 @@ public class AuthService {
             case SELLER -> {
                 SellerEntity seller = new SellerEntity();
                 seller.setUsername(registrationDto.getUsername());
+                seller.setEmail(registrationDto.getEmail());
                 seller.setPassword(passwordEncoder.encode(registrationDto.getPassword()));
                 return sellerRepository.save(seller);
             }
             case CUSTOMER -> {
                 CustomerEntity customer = new CustomerEntity();
                 customer.setUsername(registrationDto.getUsername());
+                customer.setEmail(registrationDto.getEmail());
                 customer.setPassword(passwordEncoder.encode(registrationDto.getPassword()));
                 return customerRepository.save(customer);
             }
