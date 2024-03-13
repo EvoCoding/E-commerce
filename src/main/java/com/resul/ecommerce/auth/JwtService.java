@@ -1,6 +1,6 @@
 package com.resul.ecommerce.auth;
 
-import com.resul.ecommerce.entity.UserEntity;
+import com.resul.ecommerce.repository.entity.UserEntity;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;

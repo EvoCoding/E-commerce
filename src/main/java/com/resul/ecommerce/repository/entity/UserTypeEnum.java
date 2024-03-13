@@ -1,4 +1,4 @@
-package com.resul.ecommerce.entity;
+package com.resul.ecommerce.repository.entity;
 
 public enum UserTypeEnum {
     ADMIN,

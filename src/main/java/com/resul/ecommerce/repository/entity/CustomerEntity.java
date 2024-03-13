@@ -1,9 +1,6 @@
-package com.resul.ecommerce.entity;
+package com.resul.ecommerce.repository.entity;
 
-import jakarta.persistence.DiscriminatorValue;
-import jakarta.persistence.Entity;
-import jakarta.persistence.EntityListeners;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
@@ -13,14 +10,15 @@ import java.time.Instant;
 
 @Entity
 @EntityListeners(AuditingEntityListener.class)
-@Table(name = "seller")
+@Table(name = "customer")
+@AllArgsConstructor
+@NoArgsConstructor
 @Getter
 @Setter
-@NoArgsConstructor
-@AllArgsConstructor
-@Builder
-@DiscriminatorValue("SELLER")
-public class SellerEntity extends UserEntity {
+@DiscriminatorValue("CUSTOMER")
+public class CustomerEntity extends UserEntity {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String phone;
     private boolean isDeleted;
@@ -33,6 +31,6 @@ public class SellerEntity extends UserEntity {
 
     @Override
     public UserTypeEnum getUserType() {
-        return UserTypeEnum.SELLER;
+        return UserTypeEnum.CUSTOMER;
     }
 }
