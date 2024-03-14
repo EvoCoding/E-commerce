@@ -1,11 +1,8 @@
 package com.resul.ecommerce.manager;
 
 import com.resul.ecommerce.exception.AdminNotFoundException;
-import com.resul.ecommerce.exception.SellerNotFoundException;
 import com.resul.ecommerce.repository.AdminRepository;
-import com.resul.ecommerce.repository.SellerRepository;
 import com.resul.ecommerce.repository.entity.AdminEntity;
-import com.resul.ecommerce.repository.entity.SellerEntity;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 

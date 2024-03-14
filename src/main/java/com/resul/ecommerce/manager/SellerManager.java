@@ -1,6 +1,5 @@
 package com.resul.ecommerce.manager;
 
-import com.resul.ecommerce.dto.CreateSellerDTO;
 import com.resul.ecommerce.exception.SellerNotFoundException;
 import com.resul.ecommerce.repository.SellerRepository;
 import com.resul.ecommerce.repository.entity.SellerEntity;

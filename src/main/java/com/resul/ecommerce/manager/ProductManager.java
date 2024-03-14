@@ -1,11 +1,10 @@
 package com.resul.ecommerce.manager;
 
-import com.resul.ecommerce.annotation.Manager;
 import com.resul.ecommerce.dto.FindProductsDTO;
-import com.resul.ecommerce.repository.entity.ProductEntity;
 import com.resul.ecommerce.exception.ProductNotFoundException;
 import com.resul.ecommerce.mapper.ProductMapper;
 import com.resul.ecommerce.repository.ProductRepository;
+import com.resul.ecommerce.repository.entity.ProductEntity;
 import com.resul.ecommerce.spesification.ProductSearchSpecification;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
@@ -14,7 +13,6 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
-import java.util.Optional;
 
 @Component
 @RequiredArgsConstructor

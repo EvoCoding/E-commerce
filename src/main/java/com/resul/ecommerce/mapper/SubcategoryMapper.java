@@ -1,7 +1,8 @@
 package com.resul.ecommerce.mapper;
 
 import com.resul.ecommerce.dto.CreateSubcategoryDTO;
-import com.resul.ecommerce.dto.*;
+import com.resul.ecommerce.dto.SubcategoryDTO;
+import com.resul.ecommerce.dto.UpdateSubcategoryDTO;
 import com.resul.ecommerce.repository.entity.SubcategoryEntity;
 import org.mapstruct.Mapper;
 import org.mapstruct.MappingTarget;

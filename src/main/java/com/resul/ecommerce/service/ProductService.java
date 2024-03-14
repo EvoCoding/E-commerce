@@ -8,7 +8,6 @@ import com.resul.ecommerce.manager.ProductManager;
 import com.resul.ecommerce.manager.SubcategoryManager;
 import com.resul.ecommerce.mapper.ProductMapper;
 import com.resul.ecommerce.repository.ProductRepository;
-import com.resul.ecommerce.repository.entity.StoreEntity;
 import com.resul.ecommerce.shared.PageResponse;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -52,6 +51,5 @@ public class ProductService {
         product.setDeleted(true);
         productRepository.save(product);
     }
-
 
 }
