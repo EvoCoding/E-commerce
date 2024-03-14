@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @AllArgsConstructor
-@RequestMapping("/api/v1/product")
+@RequestMapping("/api/v1/products")
 public class ProductController {
     private final ProductService productService;
 
@@ -23,7 +23,7 @@ public class ProductController {
     }
     @GetMapping("/{id}")
     public ResponseEntity<ProductDTO> findById(@PathVariable Long id){
-        return ResponseEntity.status(HttpStatus.NO_CONTENT).body(productService.findById(id));
+        return ResponseEntity.status(HttpStatus.OK).body(productService.findById(id));
     }
     @PostMapping
     public ResponseEntity<Void> create(@RequestBody CreateProductDTO createProductDTO){

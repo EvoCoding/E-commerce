@@ -1,7 +1,7 @@
-package com.resul.ecommerce.spesification;
+package com.resul.ecommerce.specification;
 
 import com.resul.ecommerce.repository.entity.ProductEntity;
-import com.resul.ecommerce.entity.ProductEntity_;
+import com.resul.ecommerce.repository.entity.ProductEntity_;
 import com.resul.ecommerce.vo.FindProductsVo;
 import jakarta.persistence.criteria.CriteriaBuilder;
 import jakarta.persistence.criteria.CriteriaQuery;

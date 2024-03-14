@@ -4,15 +4,12 @@ import com.resul.ecommerce.dto.CreateProductDTO;
 import com.resul.ecommerce.dto.FindProductsDTO;
 import com.resul.ecommerce.dto.ProductDTO;
 import com.resul.ecommerce.dto.UpdateProductDTO;
-import com.resul.ecommerce.exception.ProductNotFoundException;
 import com.resul.ecommerce.manager.ProductManager;
 import com.resul.ecommerce.mapper.ProductMapper;
 import com.resul.ecommerce.repository.ProductRepository;
 import com.resul.ecommerce.shared.PageResponse;
 import lombok.AllArgsConstructor;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 
@@ -29,8 +26,7 @@ public class ProductService {
         return new PageResponse<>(content, productEntities.getTotalPages(), productEntities.getTotalElements());
     }
     public ProductDTO findById(@PathVariable Long id){
-        var product = productManager.findByIdAndIsDeleted(id)
-                .orElseThrow(() -> new ProductNotFoundException("Product not found : "+id));
+        var product = productManager.findByIdAndIsDeleted(id);
         return productMapper.toProductDTO(product);
     }
     public void create(CreateProductDTO createProductDTO){

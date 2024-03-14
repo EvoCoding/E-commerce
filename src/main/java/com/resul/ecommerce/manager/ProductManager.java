@@ -6,7 +6,7 @@ import com.resul.ecommerce.repository.entity.ProductEntity;
 import com.resul.ecommerce.exception.ProductNotFoundException;
 import com.resul.ecommerce.mapper.ProductMapper;
 import com.resul.ecommerce.repository.ProductRepository;
-import com.resul.ecommerce.spesification.ProductSearchSpecification;
+import com.resul.ecommerce.specification.ProductSearchSpecification;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -22,7 +22,7 @@ public class ProductManager {
 
     public ProductEntity getProduct(Long id) {
         return productRepository.findById(id)
-                .orElseThrow(() -> new ProductNotFoundException("Course Not Found: " + id));
+                .orElseThrow(() -> new ProductNotFoundException("Product Not Found with id: " + id));
     }
     public Page<ProductEntity> findAll(FindProductsDTO findProductsDTO) {
         var pageable = PageRequest.of(findProductsDTO.getPage(), findProductsDTO.getSize(), Sort.by("id").ascending());
@@ -30,8 +30,9 @@ public class ProductManager {
         var productSearchSpecification = new ProductSearchSpecification(findProductsVo);
         return productRepository.findAll(productSearchSpecification, pageable);
     }
-    public Optional<ProductEntity> findByIdAndIsDeleted(Long id) {
-        return productRepository.findByIdAndIsDeleted(id, false);
+    public ProductEntity findByIdAndIsDeleted(Long id) {
+        return productRepository.findByIdAndIsDeleted(id, false)
+                .orElseThrow(() -> new ProductNotFoundException("Product Not Found with id: " + id));
     }
 
 }

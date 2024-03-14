@@ -9,8 +9,8 @@ import java.math.BigDecimal;
 @Getter
 @Setter
 public class FindProductsDTO extends PageRequest {
-    private String name;
-    private String description;
+    private String namePhrase;
+    private String descriptionPhrase;
     private BigDecimal price;
     private int quantity;
 }
