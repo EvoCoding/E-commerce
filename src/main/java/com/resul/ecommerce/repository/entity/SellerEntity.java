@@ -1,9 +1,6 @@
 package com.resul.ecommerce.repository.entity;
 
-import jakarta.persistence.DiscriminatorValue;
-import jakarta.persistence.Entity;
-import jakarta.persistence.EntityListeners;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
@@ -30,6 +27,10 @@ public class SellerEntity extends UserEntity {
 
     @UpdateTimestamp
     private Instant modifiedAt;
+
+    @ManyToOne
+    @JoinColumn(name = "store_id")
+    private StoreEntity store;
 
     @Override
     public UserTypeEnum getUserType() {

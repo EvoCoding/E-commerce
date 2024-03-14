@@ -9,34 +9,22 @@ import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
-import java.math.BigDecimal;
 import java.time.Instant;
+import java.util.List;
 
 @Entity
+@Table(name = "store")
 @EntityListeners(AuditingEntityListener.class)
-@Table(name = "product")
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
 @Setter
-public class ProductEntity {
+public class StoreEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
-    @Column(nullable = false)
     private String name;
-
     private boolean isDeleted;
-
-    @Column(nullable = false)
-    private String description;
-
-    @Column(nullable = false)
-    private double price;
-
-    @Column(nullable = false)
-    private int quantity;
 
     @CreationTimestamp
     private Instant createdAt;
@@ -44,11 +32,9 @@ public class ProductEntity {
     @UpdateTimestamp
     private Instant modifiedAt;
 
-    @ManyToOne
-    @JoinColumn(name = "subcategory_id")
-    private SubcategoryEntity subcategory;
+    @OneToMany(mappedBy = "store", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    private List<ProductEntity> products;
 
-    @ManyToOne
-    @JoinColumn(name = "store_id")
-    private StoreEntity store;
+    @OneToMany(mappedBy = "store", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    private List<SellerEntity> sellers;
 }

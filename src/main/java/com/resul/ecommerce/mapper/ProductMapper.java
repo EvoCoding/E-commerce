@@ -8,6 +8,7 @@ import com.resul.ecommerce.repository.entity.ProductEntity;
 import com.resul.ecommerce.vo.FindProductsVo;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
+import org.mapstruct.MappingTarget;
 import org.springframework.data.domain.Page;
 
 import java.util.List;
@@ -17,7 +18,7 @@ public interface ProductMapper {
     List<ProductDTO> toProductDTOList(Page<ProductEntity> productEntities);
 
     @Mapping(target = "namePhrase", expression = "java(trimToNull(findProductDTO.getNamePhrase()))")
-    @Mapping(target = "descriptionPhrase", expression = "java(trimToNull(findProductDTO.getdescriptionPhrase()))")
+    @Mapping(target = "descriptionPhrase", expression = "java(trimToNull(findProductDTO.getDescriptionPhrase()))")
     FindProductsVo toFindProductsVo(FindProductsDTO findProductDTO);
 
     default String trimToNull(String value) {
@@ -33,5 +34,5 @@ public interface ProductMapper {
 
     ProductEntity toProductEntity(CreateProductDTO createProductDTO);
 
-    void toProductEntity(UpdateProductDTO updateProductDTO, ProductEntity product);
+    void toProductEntity(UpdateProductDTO updateProductDTO, @MappingTarget ProductEntity product);
 }
