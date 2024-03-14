@@ -1,5 +1,6 @@
 package com.resul.ecommerce.manager;
 
+import com.resul.ecommerce.entity.CustomerEntity;
 import com.resul.ecommerce.exception.CustomerNotFoundException;
 import com.resul.ecommerce.repository.CustomerRepository;
 import com.resul.ecommerce.repository.entity.CustomerEntity;
