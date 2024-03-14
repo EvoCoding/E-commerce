@@ -4,13 +4,12 @@ import com.resul.ecommerce.shared.PageRequest;
 import lombok.Getter;
 import lombok.Setter;
 
-import java.math.BigDecimal;
-
 @Getter
 @Setter
 public class FindProductsDTO extends PageRequest {
+    private Long subcategoryId;
     private String namePhrase;
     private String descriptionPhrase;
-    private BigDecimal price;
-    private int quantity;
+    private Double price;
+    private Integer quantity;
 }

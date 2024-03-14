@@ -4,17 +4,20 @@ import com.resul.ecommerce.auth.JwtService;
 import com.resul.ecommerce.dto.AuthenticationRequestDTO;
 import com.resul.ecommerce.dto.AuthenticationResponseDTO;
 import com.resul.ecommerce.dto.RegisterRequestDTO;
-import com.resul.ecommerce.repository.entity.AdminEntity;
-import com.resul.ecommerce.repository.entity.CustomerEntity;
-import com.resul.ecommerce.repository.entity.SellerEntity;
-import com.resul.ecommerce.repository.entity.UserEntity;
 import com.resul.ecommerce.repository.AdminRepository;
 import com.resul.ecommerce.repository.CustomerRepository;
 import com.resul.ecommerce.repository.SellerRepository;
 import com.resul.ecommerce.repository.UserRepository;
+import com.resul.ecommerce.repository.entity.AdminEntity;
+import com.resul.ecommerce.repository.entity.CustomerEntity;
+import com.resul.ecommerce.repository.entity.SellerEntity;
+import com.resul.ecommerce.repository.entity.UserEntity;
 import lombok.AllArgsConstructor;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -78,5 +81,14 @@ public class AuthService {
             }
             default -> throw new IllegalArgumentException("Unsupported user type");
         }
+    }
+
+
+    public UserDetails getUserFromToken() {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        if (authentication != null && authentication.getPrincipal() instanceof UserDetails) {
+            return (UserDetails) authentication.getPrincipal();
+        }
+        return null;
     }
 }

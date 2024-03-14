@@ -11,6 +11,9 @@ import java.math.BigDecimal;
 public class CreateProductDTO {
 
     @NotBlank(message = "Cannot be empty")
+    private Long subcategoryId;
+
+    @NotBlank(message = "Cannot be empty")
     private String name;
 
     @NotBlank(message = "Cannot be empty")

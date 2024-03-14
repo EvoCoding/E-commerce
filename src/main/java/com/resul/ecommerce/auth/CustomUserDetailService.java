@@ -1,7 +1,7 @@
 package com.resul.ecommerce.auth;
 
-import com.resul.ecommerce.repository.entity.UserEntity;
 import com.resul.ecommerce.repository.UserRepository;
+import com.resul.ecommerce.repository.entity.UserEntity;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;

@@ -1,7 +1,6 @@
 package com.resul.ecommerce.controller;
 
 import com.resul.ecommerce.dto.CreateSellerDTO;
-import com.resul.ecommerce.dto.AdminDTO;
 import com.resul.ecommerce.dto.SellerDTO;
 import com.resul.ecommerce.dto.UpdateSellerDTO;
 import com.resul.ecommerce.service.SellerService;
