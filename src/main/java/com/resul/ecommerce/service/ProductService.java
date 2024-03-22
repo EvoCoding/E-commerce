@@ -1,10 +1,12 @@
 package com.resul.ecommerce.service;
 
+import com.resul.ecommerce.auth.JwtService;
 import com.resul.ecommerce.dto.CreateProductDTO;
 import com.resul.ecommerce.dto.FindProductsDTO;
 import com.resul.ecommerce.dto.ProductDTO;
 import com.resul.ecommerce.dto.UpdateProductDTO;
 import com.resul.ecommerce.manager.ProductManager;
+import com.resul.ecommerce.manager.SellerManager;
 import com.resul.ecommerce.manager.SubcategoryManager;
 import com.resul.ecommerce.mapper.ProductMapper;
 import com.resul.ecommerce.repository.ProductRepository;
@@ -19,12 +21,15 @@ public class ProductService {
     private final ProductManager productManager;
     private final ProductRepository productRepository;
     private final SubcategoryManager subcategoryManager;
+    private final SellerManager sellerManager;
+    private final JwtService jwtService;
 
     public PageResponse<ProductDTO> findAll(FindProductsDTO findProductsDTO) {
         var productEntities = productManager.findAll(findProductsDTO);
         var content = productMapper.toProductDTOList(productEntities);
         return new PageResponse<>(content, productEntities.getTotalPages(), productEntities.getTotalElements());
     }
+
 
     public ProductDTO findById(Long id) {
         var product = productManager.getProduct(id);
@@ -34,6 +39,8 @@ public class ProductService {
     public void create(CreateProductDTO createProductDTO) {
         var subcategory = subcategoryManager.getSubcategory(createProductDTO.getSubcategoryId());
         var product = productMapper.toProductEntity(createProductDTO);
+        var seller = sellerManager.findByUsername(jwtService.getUserFromToken().getUsername());
+        product.setSeller(seller);
         product.setSubcategory(subcategory);
         productRepository.save(product);
     }
@@ -51,5 +58,4 @@ public class ProductService {
         product.setDeleted(true);
         productRepository.save(product);
     }
-
 }

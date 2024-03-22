@@ -7,6 +7,9 @@ import org.hibernate.annotations.UpdateTimestamp;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import java.time.Instant;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
 @Entity
 @EntityListeners(AuditingEntityListener.class)
@@ -31,6 +34,9 @@ public class SellerEntity extends UserEntity {
     @ManyToOne
     @JoinColumn(name = "store_id")
     private StoreEntity store;
+
+    @OneToMany(mappedBy = "seller", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    private List<ProductEntity> products;
 
     @Override
     public UserTypeEnum getUserType() {

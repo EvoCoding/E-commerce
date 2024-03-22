@@ -1,9 +1,11 @@
 package com.resul.ecommerce.service;
 
 import com.resul.ecommerce.dto.CreateSellerDTO;
+import com.resul.ecommerce.dto.ProductDTO;
 import com.resul.ecommerce.dto.SellerDTO;
 import com.resul.ecommerce.dto.UpdateSellerDTO;
 import com.resul.ecommerce.manager.SellerManager;
+import com.resul.ecommerce.mapper.ProductMapper;
 import com.resul.ecommerce.mapper.SellerMapper;
 import com.resul.ecommerce.repository.SellerRepository;
 import lombok.AllArgsConstructor;
@@ -19,6 +21,7 @@ public class SellerService {
     private final SellerManager sellerManager;
     private final SellerRepository sellerRepository;
     private final PasswordEncoder passwordEncoder;
+    private final ProductMapper productMapper;
 
     public List<SellerDTO> findAll() {
         return sellerMapper.toSellerDTOList(sellerManager.findAll());
@@ -47,5 +50,11 @@ public class SellerService {
         seller.setDeleted(true);
         sellerRepository.save(seller);
 
+    }
+
+    public List<ProductDTO> getSellerProduct(Long sellerId) {
+        var seller = sellerManager.findById(sellerId);
+        var products = seller.getProducts();
+        return productMapper.toProductDTOList(products);
     }
 }

@@ -10,22 +10,22 @@ import org.hibernate.annotations.UpdateTimestamp;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import java.time.Instant;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
 
 @Entity
-@Table(name = "store")
 @EntityListeners(AuditingEntityListener.class)
 @AllArgsConstructor
 @NoArgsConstructor
-@Getter
 @Setter
-public class StoreEntity {
+@Getter
+@Table(name = "address")
+public class DeliveryAddressEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String name;
+    private String city;
+    private String region;
+    private String street;
+    private String postalCode;
     private boolean isDeleted;
 
     @CreationTimestamp
@@ -34,6 +34,8 @@ public class StoreEntity {
     @UpdateTimestamp
     private Instant modifiedAt;
 
-    @OneToMany(mappedBy = "store", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    private List<SellerEntity> sellers;
+    @ManyToOne
+    @JoinColumn(name = "customer_id")
+    private CustomerEntity customer;
+
 }

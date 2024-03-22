@@ -15,8 +15,14 @@ public class SellerManager {
 
     public SellerEntity findById(Long id) {
         return sellerRepository.findById(id)
-                .orElseThrow(() -> new SellerNotFoundException("Customer not found with Id: " + id));
+                .orElseThrow(() -> new SellerNotFoundException("Seller not found with Id: " + id));
     }
+
+    public SellerEntity findByUsername(String username) {
+        return sellerRepository.findByUsername(username)
+                .orElseThrow(() -> new SellerNotFoundException("Seller not found: " + username));
+    }
+
     public List<SellerEntity> findAll(){
         return sellerRepository.findAll();
     }
