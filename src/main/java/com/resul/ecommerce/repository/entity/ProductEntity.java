@@ -10,6 +10,7 @@ import org.hibernate.annotations.UpdateTimestamp;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import java.time.Instant;
+import java.util.List;
 
 @Entity
 @EntityListeners(AuditingEntityListener.class)
@@ -34,6 +35,8 @@ public class ProductEntity {
     @Column(nullable = false)
     private double price;
 
+    private Integer stock;
+
     @Column(nullable = false)
     private int quantity;
 
@@ -48,6 +51,6 @@ public class ProductEntity {
     private SubcategoryEntity subcategory;
 
     @ManyToOne
-    @JoinColumn(name = "store_id")
-    private StoreEntity store;
+    @JoinColumn(name = "seller_id")
+    private SellerEntity seller;
 }

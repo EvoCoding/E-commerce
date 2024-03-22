@@ -5,7 +5,7 @@ import com.resul.ecommerce.exception.ProductNotFoundException;
 import com.resul.ecommerce.mapper.ProductMapper;
 import com.resul.ecommerce.repository.ProductRepository;
 import com.resul.ecommerce.repository.entity.ProductEntity;
-import com.resul.ecommerce.spesification.ProductSearchSpecification;
+import com.resul.ecommerce.specification.ProductSearchSpecification;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;

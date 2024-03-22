@@ -1,8 +1,6 @@
-package com.resul.ecommerce.spesification;
+package com.resul.ecommerce.specification;
 
-import com.resul.ecommerce.repository.entity.ProductEntity;
-import com.resul.ecommerce.repository.entity.ProductEntity_;
-import com.resul.ecommerce.repository.entity.SubcategoryEntity_;
+import com.resul.ecommerce.repository.entity.*;
 import com.resul.ecommerce.vo.FindProductsVo;
 import jakarta.persistence.criteria.CriteriaBuilder;
 import jakarta.persistence.criteria.CriteriaQuery;
@@ -18,8 +16,10 @@ public class ProductSearchSpecification implements Specification<ProductEntity> 
     public Predicate toPredicate(Root<ProductEntity> root, CriteriaQuery<?> query, CriteriaBuilder criteriaBuilder) {
      return Specification.where(nameLike())
              .and(subcategoryId())
+             .and(storeId())
              .and(descriptionLike())
              .and(price())
+             .and(stock())
              .and(quantity())
              .and(isNotDeleted())
              .toPredicate(root, query, criteriaBuilder);
@@ -53,7 +53,14 @@ public class ProductSearchSpecification implements Specification<ProductEntity> 
             return null;
         }
         return (root, query, criteriaBuilder) -> criteriaBuilder.equal(root.get(ProductEntity_.quantity), quantity);
+    }
 
+    public Specification<ProductEntity> stock(){
+        var stock =findProductsVo.getStock();
+        if(stock ==null){
+            return null;
+        }
+        return (root, query, criteriaBuilder) -> criteriaBuilder.equal(root.get(ProductEntity_.stock), stock);
     }
 
     public Specification<ProductEntity> subcategoryId(){
@@ -62,6 +69,15 @@ public class ProductSearchSpecification implements Specification<ProductEntity> 
             return null;
         }
         return (root, query, criteriaBuilder) -> criteriaBuilder.equal(root.join(ProductEntity_.subcategory).get(SubcategoryEntity_.id), subcategoryId);
+
+    }
+
+    public Specification<ProductEntity> storeId(){
+        var storeId =findProductsVo.getStoreId();
+        if(storeId ==null){
+            return null;
+        }
+        return (root, query, criteriaBuilder) -> criteriaBuilder.equal(root.join(ProductEntity_.seller).get(SellerEntity_.store).get(StoreEntity_.id), storeId);
 
     }
 

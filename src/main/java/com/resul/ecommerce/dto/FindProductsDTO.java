@@ -8,8 +8,10 @@ import lombok.Setter;
 @Setter
 public class FindProductsDTO extends PageRequest {
     private Long subcategoryId;
+    private Long storeId;
     private String namePhrase;
     private String descriptionPhrase;
     private Double price;
+    private Integer stock;
     private Integer quantity;
 }

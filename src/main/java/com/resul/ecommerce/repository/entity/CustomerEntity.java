@@ -10,6 +10,7 @@ import org.hibernate.annotations.UpdateTimestamp;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import java.time.Instant;
+import java.util.List;
 
 @Entity
 @EntityListeners(AuditingEntityListener.class)
@@ -36,4 +37,7 @@ public class CustomerEntity extends UserEntity {
     public UserTypeEnum getUserType() {
         return UserTypeEnum.CUSTOMER;
     }
+
+    @OneToMany(mappedBy = "customer", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    private List<DeliveryAddressEntity> addresses;
 }
