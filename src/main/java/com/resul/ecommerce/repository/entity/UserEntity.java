@@ -1,7 +1,11 @@
-package com.resul.ecommerce.entity;
+package com.resul.ecommerce.repository.entity;
 
 import jakarta.persistence.*;
-import lombok.*;
+import jakarta.validation.constraints.NotBlank;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 @Table(name = "users")
 @Entity
@@ -16,10 +20,15 @@ public abstract class UserEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Column(name = "username", unique = true)
+    @NotBlank(message = "Username cannot be blank.")
     private String username;
 
+    @Column(name = "email", unique = true)
+    @NotBlank(message = "Email cannot be blank.")
     private String email;
-
+    
+    @NotBlank(message = "Password cannot be blank.")
     private String password;
 
     public abstract UserTypeEnum getUserType();

@@ -1,4 +1,4 @@
-package com.resul.ecommerce.entity;
+package com.resul.ecommerce.repository.entity;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -10,20 +10,22 @@ import org.hibernate.annotations.UpdateTimestamp;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import java.time.Instant;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
 @Entity
-@Table(name = "admin")
+@Table(name = "store")
 @EntityListeners(AuditingEntityListener.class)
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
 @Setter
-@DiscriminatorValue("ADMIN")
-public class AdminEntity extends UserEntity {
+public class StoreEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String phone;
+    private String name;
     private boolean isDeleted;
 
     @CreationTimestamp
@@ -32,8 +34,6 @@ public class AdminEntity extends UserEntity {
     @UpdateTimestamp
     private Instant modifiedAt;
 
-    @Override
-    public UserTypeEnum getUserType() {
-        return UserTypeEnum.ADMIN;
-    }
+    @OneToMany(mappedBy = "store", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    private List<SellerEntity> sellers;
 }

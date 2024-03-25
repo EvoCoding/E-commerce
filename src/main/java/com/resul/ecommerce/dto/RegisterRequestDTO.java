@@ -1,6 +1,6 @@
 package com.resul.ecommerce.dto;
 
-import com.resul.ecommerce.entity.UserTypeEnum;
+import com.resul.ecommerce.repository.entity.UserTypeEnum;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;

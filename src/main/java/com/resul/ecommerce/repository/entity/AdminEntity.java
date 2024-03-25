@@ -1,10 +1,10 @@
-package com.resul.ecommerce.entity;
+package com.resul.ecommerce.repository.entity;
 
-import jakarta.persistence.DiscriminatorValue;
-import jakarta.persistence.Entity;
-import jakarta.persistence.EntityListeners;
-import jakarta.persistence.Table;
-import lombok.*;
+import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
@@ -12,15 +12,16 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 import java.time.Instant;
 
 @Entity
+@Table(name = "admin")
 @EntityListeners(AuditingEntityListener.class)
-@Table(name = "seller")
+@AllArgsConstructor
+@NoArgsConstructor
 @Getter
 @Setter
-@NoArgsConstructor
-@AllArgsConstructor
-@Builder
-@DiscriminatorValue("SELLER")
-public class SellerEntity extends UserEntity {
+@DiscriminatorValue("ADMIN")
+public class AdminEntity extends UserEntity {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String phone;
     private boolean isDeleted;
@@ -33,6 +34,6 @@ public class SellerEntity extends UserEntity {
 
     @Override
     public UserTypeEnum getUserType() {
-        return UserTypeEnum.SELLER;
+        return UserTypeEnum.ADMIN;
     }
 }
