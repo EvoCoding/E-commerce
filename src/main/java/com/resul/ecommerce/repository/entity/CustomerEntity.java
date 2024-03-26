@@ -40,4 +40,7 @@ public class CustomerEntity extends UserEntity {
 
     @OneToMany(mappedBy = "customer", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<DeliveryAddressEntity> addresses;
+
+    @OneToMany(mappedBy = "customer", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    private List<ProductReviewEntity> productReviews;
 }

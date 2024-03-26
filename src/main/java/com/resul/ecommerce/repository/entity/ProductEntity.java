@@ -53,4 +53,8 @@ public class ProductEntity {
     @ManyToOne
     @JoinColumn(name = "seller_id")
     private SellerEntity seller;
+
+    @OneToMany(mappedBy = "product", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    private List<ProductReviewEntity> productReviews;
+
 }
