@@ -36,4 +36,5 @@ public class StoreEntity {
 
     @OneToMany(mappedBy = "store", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<SellerEntity> sellers;
+
 }

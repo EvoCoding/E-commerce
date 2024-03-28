@@ -8,7 +8,6 @@ import com.resul.ecommerce.dto.UpdateProductReviewDTO;
 import com.resul.ecommerce.manager.CustomerManager;
 import com.resul.ecommerce.manager.ProductManager;
 import com.resul.ecommerce.manager.ProductReviewManager;
-import com.resul.ecommerce.manager.SubcategoryManager;
 import com.resul.ecommerce.mapper.ProductReviewMapper;
 import com.resul.ecommerce.repository.ProductReviewRepository;
 import lombok.RequiredArgsConstructor;
