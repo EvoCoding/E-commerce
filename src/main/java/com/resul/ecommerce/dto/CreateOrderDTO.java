@@ -14,6 +14,6 @@ public class CreateOrderDTO {
     private Double totalAmount;
     private Instant orderDate;
     private OrderStatusEnum orderStatus;
-    private List<OrderItemEntity> orderItems;
+    private List<OrderItemDTO> orderItems;
     private int deliveryAddressId;
 }
