@@ -47,8 +47,8 @@ public class CustomerEntity extends UserEntity {
     @OneToMany(mappedBy = "customer", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<OrderEntity> orders;
 
-    @OneToMany(mappedBy = "customer", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    private List<BasketEntity> baskets;
+    @OneToOne(mappedBy = "customer", cascade = CascadeType.ALL)
+    private BasketEntity basket;
 
 
 }

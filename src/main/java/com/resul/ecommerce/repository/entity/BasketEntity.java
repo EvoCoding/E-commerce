@@ -10,7 +10,7 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 import java.util.List;
 
 @Entity
-@Table(name = "baskets")
+@Table(name = "basket")
 @EntityListeners(AuditingEntityListener.class)
 @AllArgsConstructor
 @NoArgsConstructor
@@ -24,5 +24,7 @@ public class BasketEntity {
     @OneToMany(mappedBy = "basket", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<BasketItemEntity> basketItems;
 
-
+    @OneToOne
+    @JoinColumn(name = "customer_id")
+    private CustomerEntity customer;
 }

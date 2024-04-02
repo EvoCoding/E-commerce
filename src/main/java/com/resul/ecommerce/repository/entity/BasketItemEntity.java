@@ -29,4 +29,5 @@ public class BasketItemEntity {
 
     @Column(name = "quantity", nullable = false)
     private int quantity;
+
 }

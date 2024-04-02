@@ -15,9 +15,10 @@ import java.util.List;
 @AllArgsConstructor
 public class BasketItemController {
     private final BasketItemService basketItemService;
-  @PostMapping
-  public ResponseEntity<Void> addToBasket(@RequestBody AddToBasketDTO addToBasketDTO){
-      basketItemService.addToBasket(addToBasketDTO);
-   return ResponseEntity.status(HttpStatus.CREATED).build();
-  }
+
+    @PostMapping
+    public ResponseEntity<Void> addToBasket(@RequestBody AddToBasketDTO addToBasketDTO) {
+        basketItemService.addToBasket(addToBasketDTO);
+        return ResponseEntity.status(HttpStatus.CREATED).build();
+    }
 }

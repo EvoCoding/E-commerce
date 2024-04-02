@@ -2,7 +2,6 @@ package com.resul.ecommerce.controller;
 
 import com.resul.ecommerce.dto.CreateOrderItemDTO;
 import com.resul.ecommerce.dto.OrderItemDTO;
-import com.resul.ecommerce.repository.entity.OrderItemEntity;
 import com.resul.ecommerce.service.OrderItemService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
