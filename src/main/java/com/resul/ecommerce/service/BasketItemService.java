@@ -20,7 +20,7 @@ public class BasketItemService {
     public void addToBasket(AddToBasketDTO addToBasketDTO) {
         var product = productManager.getProduct(addToBasketDTO.getProductId());
         var basket = basketManager.getOrCreateBasketForCustomer();
-        var basketItem = basketItemManager.getBasketItemByBasketId(basket.getId());
+        var basketItem = basketItemManager.getBasketItemByBasketIdAndProductId(basket.getId(), product.getId());
 
         if (basketItem != null) {
             basketItem.setQuantity(basketItem.getQuantity() + addToBasketDTO.getQuantity());

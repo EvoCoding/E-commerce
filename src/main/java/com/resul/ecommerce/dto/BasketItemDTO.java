@@ -12,5 +12,5 @@ public class BasketItemDTO {
     private Long productId;
     private int quantity;
     private String productName;
-    private BigDecimal price;
+    private Double price;
 }

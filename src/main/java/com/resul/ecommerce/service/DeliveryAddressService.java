@@ -19,17 +19,16 @@ public class DeliveryAddressService {
     private final DeliveryAddressRepository deliveryAddressRepository;
     private final DeliveryAddressManager deliveryAddressManager;
     private final DeliveryAddressMapper deliveryAddressMapper;
-    private final JwtService jwtService;
     private final CustomerManager customerManager;
 
     public List<DeliveryAddressDTO> findAll() {
-        var customer = customerManager.findByUsername(jwtService.getUserFromToken().getUsername());
+        var customer = customerManager.getCustomerFromToken();
         var deliveryAddresses = deliveryAddressManager.findAll(customer.getId());
         return deliveryAddressMapper.toDeliveryAddressDTOList(deliveryAddresses);
     }
 
     public void create(CreateDeliveryAddressDTO createDeliveryAddressDTO) {
-        var customer = customerManager.findByUsername(jwtService.getUserFromToken().getUsername());
+        var customer = customerManager.getCustomerFromToken();
         var deliveryAddress = deliveryAddressMapper.toDeliveryAddressEntity(createDeliveryAddressDTO);
         deliveryAddress.setCustomer(customer);
         deliveryAddressRepository.save(deliveryAddress);

@@ -20,15 +20,13 @@ private final OrderRepository orderRepository;
 private final OrderMapper orderMapper;
 private final OrderManager orderManager;
 private final CustomerManager customerManager;
-private final JwtService jwtService;
-private final ProductManager productManager;
 
     public List<OrderDTO> findAllByCustomerId(Long id) {
         return orderMapper.toOrderDTOList(orderManager.findAllByCustomerId(id));
     }
 
     public void create(CreateOrderDTO createOrderDTO) {
-        var customer = customerManager.findByUsername(jwtService.getUserFromToken().getUsername());
+        var customer = customerManager.getCustomerFromToken();
         var deliveryAddress = customer.getAddresses().get(createOrderDTO.getDeliveryAddressId());
         var order = orderMapper.toOrderEntity(createOrderDTO);
         order.setCustomer(customer);

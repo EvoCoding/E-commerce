@@ -1,34 +1,30 @@
 package com.resul.ecommerce.service;
 
-import com.resul.ecommerce.auth.JwtService;
-import com.resul.ecommerce.manager.CustomerManager;
-import com.resul.ecommerce.repository.BasketRepository;
-import com.resul.ecommerce.repository.entity.BasketEntity;
+import com.resul.ecommerce.dto.BasketItemDTO;
+import com.resul.ecommerce.manager.BasketItemManager;
+import com.resul.ecommerce.mapper.BasketItemMapper;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 @AllArgsConstructor
 public class BasketService {
-//private final BasketRepository basketRepository;
-//private final JwtService jwtService;
-//private final CustomerManager customerManager;
-//    public BasketEntity getOrCreateBasketForCustomer() {
-//        var customer = customerManager.findByUsername(jwtService.getUserFromToken().getUsername());
-//
-////        if (customer == null) {
-////            // Handle case where customer doesn't exist
-////            return null;
-////        }
-//
-//        BasketEntity basket = customer.getBasket();
-//
-//        if (basket == null) {
-//            basket = new BasketEntity();
-//            basket.setCustomer(customer);
-//            basket = basketRepository.save(basket);
-//        }
-//
-//        return basket;
-//    }
+    private final BasketItemManager basketItemManager;
+    private final BasketItemMapper basketItemMapper;
+
+    public List<BasketItemDTO> getBasketDetails() {
+        return basketItemManager.getBasketItems().stream()
+                .map(basketItemEntity -> {
+                    BasketItemDTO basketItemDTO = new BasketItemDTO();
+                    basketItemDTO.setId(basketItemEntity.getId());
+                    basketItemDTO.setPrice(basketItemEntity.getProduct().getPrice());
+                    basketItemDTO.setProductId(basketItemEntity.getProduct().getId());
+                    basketItemDTO.setProductName(basketItemEntity.getProduct().getName());
+                    basketItemDTO.setQuantity(basketItemEntity.getQuantity());
+                    return basketItemDTO;
+                }).collect(Collectors.toList());
+    }
 }

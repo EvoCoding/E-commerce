@@ -39,6 +39,10 @@ dependencies {
     implementation 'org.hibernate:hibernate-jpamodelgen:6.4.4.Final'
     annotationProcessor 'org.hibernate:hibernate-jpamodelgen:6.4.4.Final'
     compileOnly 'org.hibernate:hibernate-jpamodelgen:6.4.4.Final'
+    implementation 'com.stripe:stripe-java:20.41.0'
+    implementation 'com.razorpay:razorpay-java:1.4.6'
+
+
 }
 
 tasks.named('test') {

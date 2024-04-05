@@ -1,5 +1,6 @@
 package com.resul.ecommerce.manager;
 
+import com.resul.ecommerce.auth.JwtService;
 import com.resul.ecommerce.exception.CustomerNotFoundException;
 import com.resul.ecommerce.exception.SellerNotFoundException;
 import com.resul.ecommerce.repository.CustomerRepository;
@@ -14,6 +15,11 @@ import java.util.List;
 @RequiredArgsConstructor
 public class CustomerManager {
     private final CustomerRepository customerRepository;
+    private final JwtService jwtService;
+
+    public CustomerEntity getCustomerFromToken() {
+        return findByUsername(jwtService.getUserFromToken().getUsername());
+    }
 
     public CustomerEntity findById(Long id) {
         return customerRepository.findById(id)

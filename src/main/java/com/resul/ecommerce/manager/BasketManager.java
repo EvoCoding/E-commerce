@@ -10,10 +10,9 @@ import org.springframework.stereotype.Component;
 @RequiredArgsConstructor
 public class BasketManager {
     private final BasketRepository basketRepository;
-    private final JwtService jwtService;
     private final CustomerManager customerManager;
     public BasketEntity getOrCreateBasketForCustomer() {
-        var customer = customerManager.findByUsername(jwtService.getUserFromToken().getUsername());
+        var customer = customerManager.getCustomerFromToken();
         BasketEntity basket = customer.getBasket();
         if (basket == null) {
             basket = new BasketEntity();

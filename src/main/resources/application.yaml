@@ -17,3 +17,7 @@ spring:
 springdoc:
   api-docs:
     enabled: true
+
+
+stripe:
+  secretKey: sk_test_4eC39HqLyjWDarjtT1zdp7dc
